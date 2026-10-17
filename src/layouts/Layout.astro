@@ -1,0 +1,10 @@
+---
+import '../styles/global.css';
+import { href } from '../lib/museum';
+const { title = '一个问题的博物馆', description = '收藏亲手做东西时，真正推不动的那一下。ANNA 的个人问题博物馆。' } = Astro.props;
+---
+<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><meta name="description" content={description}/><meta name="color-scheme" content="light dark"/><title>{title}</title><link rel="icon" href={href('favicon.svg')} type="image/svg+xml"/>
+<script is:inline>try{const t=localStorage.getItem('museum-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch{}</script>
+</head><body><a class="skip" href="#main">跳至内容</a><header class="site-header"><a class="brand" href={href()}>一个问题的博物馆<span>ANNA · 私人收藏 / 持续生长</span></a><nav aria-label="主导航"><a href={href()}>展厅</a><a href={href('projects/')}>项目索引</a><a href={href('unsolved/')}>未解决</a><a href={href('about/')}>关于</a><button id="theme" aria-label="切换浅色或深色模式">切换明暗</button></nav></header><main id="main"><slot/></main><footer><span>一个问题的博物馆</span><span>设计与开发 · ANNA</span><span>问题只属于亲手做过的人。</span></footer>
+<script>document.querySelector('#theme')?.addEventListener('click',()=>{const root=document.documentElement;const dark=root.dataset.theme ? root.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;root.dataset.theme=dark?'light':'dark';try{localStorage.setItem('museum-theme',root.dataset.theme)}catch{}});</script>
+</body></html>

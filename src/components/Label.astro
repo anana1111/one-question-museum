@@ -1,0 +1,6 @@
+---
+import { href, outcomeNames } from '../lib/museum';
+import type { CollectionEntry } from 'astro:content';
+const { entry } = Astro.props as { entry: CollectionEntry<'exhibits'> }; const d=entry.data;
+---
+<article class:list={['label', { planned:d.status==='planned' }]}><div class="label-meta"><span>藏品 / {d.id}</span><span>{d.status==='planned'?'筹展中':d.demo?'示范展品':outcomeNames[d.outcome]}</span></div><h3>{d.status==='published'?<a href={href(`exhibits/${d.id}/`)}>{d.title}<span aria-hidden="true"> ↗</span></a>:d.title}</h3><p>{d.oneLiner}</p><div class="label-bottom"><span>{d.project}</span><span>{d.status==='planned'?'待记录':`${d.stuckHours} 小时${d.demo?'（占位）':''}`}</span></div></article>
