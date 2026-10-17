@@ -18,6 +18,7 @@ npm run dev
 - `src/pages/index.astro`：展厅与自动汇总。
 - `src/pages/exhibits/[id].astro`：四段式展品模板，上一件/下一件仅在已展出展品之间导航。
 - `src/components/Occlusion.astro`：001 Canvas 交互，仅展品页加载脚本。
+- `src/lib/interactions.ts`：交互登记表，`interaction` 标识 → 组件。
 - `src/pages/projects.astro`、`unsolved.astro`、`about.astro`：项目索引、未解决、理念。
 - `src/lib/museum.ts`：展厅、结局文案、基础路径与数据查询。
 - `src/styles/global.css`：字体与明暗主题。
@@ -28,7 +29,7 @@ npm run dev
 2. 填写 `title`、`date`（YYYY-MM-DD）、`project`、`hall`、`stuckHours`（非负数）、`oneLiner`。
 3. `outcome` 为 `solved` / `bypassed` / `unsolved`；`status` 为 `published` / `planned`。
 4. `context` 填“当时在做什么”，`resolution` 填解决/绕开/未解决的真实过程。真实记录把 `demo` 改为 `false`，`locale` 暂填 `zh`。
-5. 在 `src/components/` 新建独立 Astro 交互组件，例如 `MyExperiment.astro`。在 `[id].astro` 导入组件，为 `interaction` 的新标识增加分支，并更新顶部合法值校验。用 Astro `<script>` 管理页面脚本；大库请在交互启动时 `import()`，不要在 Layout 或首页引入。组件样式可用 Astro scoped style。
+5. 在 `src/components/` 新建独立 Astro 交互组件，例如 `MyExperiment.astro`，然后在 `src/lib/interactions.ts` 里 import 并登记一行（如 `myExperiment: MyExperiment`），展品数据的 `interaction` 填同名标识即可，不需要修改展品页模板。用 Astro `<script>` 管理页面脚本；大库请在交互启动时 `import()`，不要在 Layout 或首页引入。组件样式可用 Astro scoped style。
 6. `interaction: "none"` 可先跑通内容，但正式展出前应补交互以满足收录规则。筹展条目无详情链接、不生成页面，显示虚线展签。
 7. `npm run build` 验证，提交后自动部署。
 
