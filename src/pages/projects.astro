@@ -1,4 +1,4 @@
 ---
 import Layout from '../layouts/Layout.astro'; import Label from '../components/Label.astro'; import {exhibits} from '../lib/museum'; const entries=await exhibits(); const projects=[...new Set(entries.map(e=>e.data.project))];
 ---
-<Layout title="项目索引 · 一个问题的博物馆"><section class="page-intro"><span class="eyebrow">另一条参观路线 / INDEX</span><h1>从做过的事，<br/>找回遇到的问题。</h1><p>同一个项目，会通向不同的展厅。</p></section>{projects.map(project=><section class="hall"><h2>{project}</h2><div class="labels">{entries.filter(e=>e.data.project===project).map(entry=><Label entry={entry}/>)}</div></section>)}</Layout>
+<Layout description="按项目浏览一个问题的博物馆的全部展品：从剑道动作分析工具到网页项目，每个项目在制作中遇到的真实问题。" title="项目索引 · 一个问题的博物馆"><section class="page-intro"><span class="eyebrow">另一条参观路线 / INDEX</span><h1>从做过的事，<br/>找回遇到的问题。</h1><p>同一个项目，会通向不同的展厅。</p></section>{projects.map(project=><section class="hall"><h2>{project}</h2><div class="labels">{entries.filter(e=>e.data.project===project).map(entry=><Label entry={entry}/>)}</div></section>)}</Layout>

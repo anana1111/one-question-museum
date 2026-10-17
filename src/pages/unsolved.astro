@@ -1,4 +1,4 @@
 ---
 import Layout from '../layouts/Layout.astro'; import Label from '../components/Label.astro'; import {exhibits} from '../lib/museum'; const entries=(await exhibits()).filter(e=>e.data.outcome==='unsolved'&&e.data.status==='published');
 ---
-<Layout title="未解决 · 一个问题的博物馆"><section class="page-intro"><span class="eyebrow">开放中的问题 / UNRESOLVED</span><h1>还没有答案，<br/>先把问题留下。</h1><p>这里收录已展出、仍未解决的问题。筹展占位不计入。</p></section><div class="labels">{entries.map(entry=><Label entry={entry}/>)}{!entries.length&&<p>这里暂时没有未解决的展品。</p>}</div></Layout>
+<Layout description="一个问题的博物馆的未解决展区：已经展出、但还没有找到答案的真实问题。" title="未解决 · 一个问题的博物馆"><section class="page-intro"><span class="eyebrow">开放中的问题 / UNRESOLVED</span><h1>还没有答案，<br/>先把问题留下。</h1><p>这里收录已展出、仍未解决的问题。筹展占位不计入。</p></section><div class="labels">{entries.map(entry=><Label entry={entry}/>)}{!entries.length&&<p>这里暂时没有未解决的展品。</p>}</div></Layout>
